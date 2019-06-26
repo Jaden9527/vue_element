@@ -9,12 +9,15 @@ import api from './common/api';
 import './common/utils/rem'; //自适应rem函数
 // import rem from './common/utils/rem';
 
+Vue.prototype.$api = api;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
