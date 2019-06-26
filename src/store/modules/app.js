@@ -79,7 +79,7 @@ const app = {
                 content.commit('SET_NAME', userName)
                 resolve();
             })
-        }
+        },
     }
 };
 

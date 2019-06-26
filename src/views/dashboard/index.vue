@@ -3,8 +3,8 @@
         <h1>{{ msg }}</h1>
         <h2>Essential Links</h2>
         <h3>{{this.$store.state.count}}</h3>
-        <el-button type="primary" @click="addFn">add</el-button>
-        <el-button type="danger" @click="reductFn">delete</el-button>
+        <el-button type="primary" size="small" @click="addFn">add</el-button>
+        <el-button type="danger" size="small" @click="reductFn">delete</el-button>
     </div>
 </template>
 
