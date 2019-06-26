@@ -11,7 +11,7 @@
                     active-text-color="#ffd04b"
                     :collapse="isCollapsed"
                     :style="{width: asideWidth}"
-                    unique-opened="true"
+                    :unique-opened="!transition"
                     :collapse-transition="transition"
                 >
                     <el-submenu index="1">
