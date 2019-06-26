@@ -2,21 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from '../store';
 /* Layout */
-// import Layout from '@/views/layout/Layout'
+import Layout from '@/views/layout/Layout'
 
 Vue.use(Router)
 
 /** 基础路由 */
 export const constantRoutes = [
-    {
-    path: '/test',
-    component: () => import('@/components/HelloWorld'),
-    hidden: true,
-    name: 'test',
-    meta: {
-      title: 'HelloWorld',
-    },
-  },
   // {
   //   path: '/login',
   //   component: () => import('@/views/login/login'),
@@ -37,43 +28,43 @@ export const constantRoutes = [
   //     icon: 'logo-wordpress',
   //   },
   // },
-  // {
-  //   path: '/404',
-  //   component: () => import('@/views/errorPage/404'),
-  //   name: '404',
-  //   meta: {
-  //     title: '页面不存在',
-  //   },
-  //   hidden: true
-  // },
-  // {
-  //   path: '/401',
-  //   component: () => import('@/views/errorPage/401'),
-  //   hidden: true,
-  //   name: '401',
-  //   meta: {
-  //     title: '权限不足',
-  //   },
-  // },
-  // {
-  //   path: '',
-  //   component: Layout,
-  //   redirect: '/home',
-  //   name: '',
-  //   meta: {
-  //     title: 'dashboard',
-  //     icon: 'ios-navigate',
-  //     roles: ['admin', 'editor'] // you can set roles in root nav
-  //   },
-  //   children: [
-  //     {
-  //       path: '/home',
-  //       component: () => import('@/views/dashboard/index'),
-  //       name: 'home',
-  //       meta: { title: '首页', icon: 'ios-aperture' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/404',
+    component: () => import('@/views/errorPage/404'),
+    name: '404',
+    meta: {
+      title: '页面不存在',
+    },
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/errorPage/401'),
+    hidden: true,
+    name: '401',
+    meta: {
+      title: '权限不足',
+    },
+  },
+  {
+    path: '',
+    component: Layout,
+    redirect: '/home',
+    name: '',
+    meta: {
+      title: 'dashboard',
+      icon: 'el-icon-eleme',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: '/home',
+        component: () => import('@/views/dashboard/index'),
+        name: 'home',
+        meta: { title: '首页', icon: 'el-icon-s-home' }
+      }
+    ]
+  },
   // {
   //   path: '/main',
   //   component: Layout,
@@ -142,6 +133,7 @@ router.beforeEach((to, from, next) => {
   }
 
   var userName = localStorage.getItem("userName"); // 判断是否登录，本地存储有用户数据则视为已经登录
+  var userName = true;
   if (userName) {
     //如果用户信息存在则往下执行。
     store.commit('SET_NAME', userName);
