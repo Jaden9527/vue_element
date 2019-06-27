@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import store from '../store';
+import { Message } from 'element-ui'
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
 /* Layout */
 import Layout from '@/views/layout/Layout'
 
@@ -65,30 +68,30 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/main',
-  //   component: Layout,
-  //   hidden: false,
-  //   name: 'main',
-  //   meta: {
-  //     title: 'dashboard',
-  //     icon: 'md-analytics',
-  //   },
-  //   children: [
-  //     {
-  //       path: 'home12',
-  //       component: () => import('@/components/HelloWorld'),
-  //       name: 'home12',
-  //       meta: { title: '首页12', icon: 'ios-navigate', roles: ['admin'] }
-  //     },
-  //     {
-  //       path: 'home13',
-  //       component: () => import('@/views/dashboard/index'),
-  //       name: 'home13',
-  //       meta: { title: '首页13', icon: 'md-bookmarks', roles: ['editor'] }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/main',
+    component: Layout,
+    hidden: false,
+    name: 'main',
+    meta: {
+      title: 'main',
+      icon: 'el-icon-menu',
+    },
+    children: [
+      {
+        path: 'home12',
+        component: () => import('@/components/HelloWorld'),
+        name: 'home12',
+        meta: { title: '首页12', icon: 'el-icon-s-management', roles: ['admin'] }
+      },
+      {
+        path: 'home13',
+        component: () => import('@/views/dashboard/index'),
+        name: 'home13',
+        meta: { title: '首页124', icon: 'el-icon-s-promotion', roles: ['admin'] }
+      }
+    ]
+  },
   // // 404 page must be placed at the end !!!
   // {
   //   path: '*', name: '404',
@@ -104,12 +107,17 @@ const router = new Router({
   routes: constantRoutes
 })
 
+/** 禁用进度环 */
+NProgress.configure({ showSpinner: false });
 
 /**路由守卫**/
 router.beforeEach((to, from, next) => {
   // to: Route: 即将要进入的目标 路由对象
   // from: Route: 当前导航正要离开的路由
   // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+  // start progress bar
+  NProgress.start();
+
   let role = false;
   if (to.meta) {
     if (to.meta.title) { //判断是否有标题
@@ -156,6 +164,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0);
+  NProgress.done();
 });
 
 export default router;

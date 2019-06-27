@@ -45,6 +45,12 @@ export default {
 };
 </script>
 
+<style>
+body {
+  background: #ffffff !important;
+}
+</style>
+
 <style lang="less" scoped>
 .errPage-container {
   width: 800px;
