@@ -2,6 +2,13 @@
   <div class="content">
     <el-container style="height: 100%;">
       <el-aside :width="asideWidth">
+        <!-- logo -->
+        <template>
+          <div :class="logoClass">
+            <img src="../../common/images/vueLogo.png" class="sidebar-logo">
+            <h1 v-if="!isCollapsed" class="sidebar-title">{{ title }}</h1>
+          </div>
+        </template>
         <!-- 菜单 -->
         <el-menu
           :default-active="currentPageName"
@@ -71,7 +78,7 @@
                 </el-dropdown-menu>
               </el-dropdown>
               <!-- 用户信息 -->
-              <el-dropdown @command="handleTagsOption">
+              <el-dropdown @command="handleClickUserDropdown">
                 <template>
                   <div>
                     <img class="avatar" src="../../common/images/usericon.jpg" alt="">
@@ -121,11 +128,14 @@ export default {
     headerClass() {
       return this.isCollapsed ? "collapsed-header" : "";
     },
+    logoClass() {
+      return ["logo", this.isCollapsed ? "collapsed-logo" : ""];
+    },
     key() {
       return this.$route.fullPath;
     },
     userName() {
-      return this.$store.state.app.userName || "未登录";
+      return this.$store.getters.userName || "未登录";
     },
     /** 返回页签列表 */
     pageTagsList() {
@@ -180,6 +190,23 @@ export default {
       } else {
         this.$store.commit("clearOtherTags", this);
       }
+    },
+    /** 用户信息/注销 */
+    handleClickUserDropdown(name) {
+      if (name === "UserProfile") {
+      } else if (name === "loginout") {
+        localStorage.removeItem("userName");
+        localStorage.removeItem("password");
+        localStorage.removeItem("rememberMe");
+
+        this.$router.replace({
+          name: "login",
+          query: {
+            //路由传参时push和query搭配使用 ，作用时传递参数
+            id: 1
+          }
+        });
+      }
     }
   },
   created() {
@@ -224,6 +251,35 @@ export default {
 .content {
   width: 100%;
   height: 100%;
+}
+.logo {
+  padding: 5px 20px;
+  background: #2b2f3a;
+  display: flex;
+  align-items: center;
+}
+.collapsed-logo {
+  padding: 20px;
+}
+.sidebar-logo {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.sidebar-title {
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  line-height: 50px;
+  font-size: 14px;
+  font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .el-header {
   background-color: #fff;

@@ -11,26 +11,26 @@ Vue.use(Router)
 
 /** 基础路由 */
 export const constantRoutes = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/login'),
-  //   hidden: true,
-  //   name: 'login',
-  //   meta: {
-  //     title: '登录',
-  //     icon: 'logo-vimeo',
-  //   },
-  // },
-  // {
-  //   path: '/register',
-  //   component: () => import('@/views/login/register'),
-  //   hidden: true,
-  //   name: 'register',
-  //   meta: {
-  //     title: '注册',
-  //     icon: 'logo-wordpress',
-  //   },
-  // },
+  {
+    path: '/login',
+    component: () => import('@/views/login/login'),
+    hidden: true,
+    name: 'login',
+    meta: {
+      title: '登录',
+      icon: 'logo-vimeo',
+    },
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/login/register'),
+    hidden: true,
+    name: 'register',
+    meta: {
+      title: '注册',
+      icon: 'logo-wordpress',
+    },
+  },
   {
     path: '/404',
     component: () => import('@/views/errorPage/404'),
@@ -92,15 +92,15 @@ export const constantRoutes = [
       }
     ]
   },
-  // // 404 page must be placed at the end !!!
-  // {
-  //   path: '*', name: '404',
-  //   meta: {
-  //     title: '页面不存在',
-  //   },
-  //   redirect: '/404',
-  //   hidden: true
-  // }
+  // 404 page must be placed at the end !!!
+  {
+    path: '*', name: '404',
+    meta: {
+      title: '页面不存在',
+    },
+    redirect: '/404',
+    hidden: true
+  }
 ]
 
 const router = new Router({
@@ -141,7 +141,6 @@ router.beforeEach((to, from, next) => {
   }
 
   var userName = localStorage.getItem("userName"); // 判断是否登录，本地存储有用户数据则视为已经登录
-  var userName = true;
   if (userName) {
     //如果用户信息存在则往下执行。
     store.commit('SET_NAME', userName);
