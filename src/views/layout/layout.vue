@@ -71,7 +71,7 @@
             <div class="flex-grow-0" style="margin: 0px 10px;">
               <!-- 标签页清除 -->
               <el-dropdown @command="handleTagsOption">
-                <i class="el-icon-setting" style="margin-right: 15px"></i>
+                <i class="el-icon-setting" style="margin-right: 15px;font-size: 18px;"></i>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="clearAll">清除全部</el-dropdown-item>
                   <el-dropdown-item command="clearOthers">清除其他</el-dropdown-item>

@@ -18,7 +18,7 @@
           <el-form-item prop="userName">
             <el-input placeholder="用户名" v-model="loginModel.userName">
               <template slot="prepend">
-                <i class="el-icon-user-solid"></i>
+                <i class="el-icon-user-solid icon-i"></i>
               </template>
             </el-input>
           </el-form-item>
@@ -31,7 +31,7 @@
               autocomplete="off"
             >
               <template slot="prepend">
-                <i class="el-icon-lock"></i>
+                <i class="el-icon-lock icon-i"></i>
               </template>
             </el-input>
           </el-form-item>
@@ -217,5 +217,9 @@ form {
 
 .el-button--primary {
   width: 100%;
+}
+
+.icon-i{
+  font-size: 20px;
 }
 </style>
