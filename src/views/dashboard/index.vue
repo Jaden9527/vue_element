@@ -6,7 +6,7 @@
         <el-button type="primary" size="small" @click="addFn">add</el-button>
         <el-button type="danger" size="small" @click="reductFn">delete</el-button>
         <el-button type="primary" size="small" @click="uploadFn">上传</el-button>
-        <uploadFile :uploadFileSetting="uploadFileSetting" @on-close="uploadClose()"></uploadFile>
+        <uploadFile :uploadFileSetting="uploadFileSetting" @on-close="uploadClose()" @uploadChange="uploadChange"></uploadFile>
     </div>
 </template>
 
@@ -37,6 +37,9 @@ export default {
     },
     uploadClose: function() {
         this.uploadFileSetting.uploadShow = false;
+    },
+    uploadChange:function(list) {
+      console.log("上传返回路径", list)
     }
   }
 };
