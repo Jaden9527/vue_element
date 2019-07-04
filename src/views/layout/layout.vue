@@ -97,7 +97,12 @@
           :style="{margin: '60px 0 0', background: '#fafafa', height:'100%',overflow: 'hidden'}"
         >
           <div style="background:#fff;height:100%;width:100%;overflow: auto">
-            <router-view :key="key"></router-view>
+            <!--缓存想要缓存的页面，实现后退不刷新-->
+            <!--加上v-if的判断，可以自定义想要缓存的组件，自定义在router里面-->
+            <keep-alive>
+              <router-view v-if="$route.meta.keepAlive" :key="key"></router-view>
+            </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive" :key="key"></router-view>
           </div>
         </el-main>
       </el-container>

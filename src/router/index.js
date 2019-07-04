@@ -64,7 +64,7 @@ export const constantRoutes = [
         path: '/home',
         component: () => import('@/views/dashboard/index'),
         name: 'home',
-        meta: { title: '首页', icon: 'el-icon-s-home' }
+        meta: { title: '首页', icon: 'el-icon-s-home',keepAlive: false }
       }
     ]
   },
@@ -82,13 +82,13 @@ export const constantRoutes = [
         path: 'home12',
         component: () => import('@/components/HelloWorld'),
         name: 'home12',
-        meta: { title: '首页12', icon: 'el-icon-s-management', roles: ['admin'] }
+        meta: { title: '首页12', icon: 'el-icon-s-management', roles: ['admin'],keepAlive: true }
       },
       {
         path: 'home13',
         component: () => import('@/views/dashboard/index'),
         name: 'home13',
-        meta: { title: '首页124', icon: 'el-icon-s-promotion', roles: ['admin'] }
+        meta: { title: '首页124', icon: 'el-icon-s-promotion', roles: ['admin'],keepAlive: true }
       }
     ]
   },
