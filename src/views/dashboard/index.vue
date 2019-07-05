@@ -21,7 +21,8 @@ export default {
     return {
       msg: "Welcome to Home Page",
       uploadFileSetting: {
-        uploadShow: false
+        uploadShow: false,
+         multiple: "multiple"
       }
     };
   },

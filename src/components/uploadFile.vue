@@ -14,7 +14,10 @@
     <div class="uploadLayer">
       <div class="uploadContent">
         <i class="el-icon-circle-close closeuploadBtn" @click="closeUploadLayer()"></i>
-        <div class="warnTip">温馨提醒：如果上传的数据量较大，请耐心等候！</div>
+        <div class="warnTip">
+          <p>温馨提醒：如果上传的数据量较大，请耐心等候！</p>
+          <p>上传上限：{{uploadNum}}张</p>
+        </div>
         <div id="uploader-demo">
           <!--用来存放item-->
           <div id="fileList" class="uploader-list">
@@ -62,6 +65,13 @@ export default {
         };
       }
     },
+    uploadNum: {
+      /** 上传的数量限制，默认为1张 */
+      type: Number,
+      default: function() {
+        return 1;
+      }
+    },
     options: {
       // 上传路径和其他参数
       type: Object,
@@ -91,12 +101,24 @@ export default {
     //有文件添加进来时
     getFile: function(event) {
       var vm = this;
-      //   if (this.fileObj.length > 0) {
-      //     vm.$Message.warning("只能选择一个文件！");
-      //     return;
-      //   }
 
-      for (let i = 0; i < event.target.files.length; i++) {
+      if (this.fileObj.length >= this.uploadNum) {
+        this.$message({
+          showClose: true,
+          message: "只能选择" + this.uploadNum + "个文件！",
+          type: "warning"
+        });
+        this.$refs.clearFile.value = "";
+        return;
+      }
+
+      let len = event.target.files.length;
+
+      if (len > this.uploadNum) {
+        len = this.uploadNum;
+      }
+
+      for (let i = 0; i < len; i++) {
         let file = event.target.files[i];
         let isHave = this.fileObj.some(item => {
           if (
@@ -133,7 +155,11 @@ export default {
     shangchuan: function() {
       var vm = this;
       if (vm.fileObj == "") {
-        vm.$Message.warning("请选择文件！");
+        vm.$message({
+          showClose: true,
+          message: "请选择文件！",
+          type: "warning"
+        });
         return false;
       }
 
