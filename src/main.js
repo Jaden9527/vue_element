@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import store from './store';
 import axios from 'axios';
 import api from './common/api';
+import VueAMap from 'vue-amap';
 import './common/utils/rem'; //自适应rem函数
 // import rem from './common/utils/rem';
 
@@ -17,7 +18,7 @@ Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
-
+Vue.use(VueAMap);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
