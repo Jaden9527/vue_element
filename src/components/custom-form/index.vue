@@ -406,7 +406,7 @@ export default {
         item,
         tagName: getPrefix('cascader')
       }
-      props.data = this.getCascaderOptions(item.options)
+      props.options  = this.getCascaderOptions(item.options)
       tag.props = props
       return this.generateTag(tag)
     },
