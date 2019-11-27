@@ -22,7 +22,7 @@
           <!--用来存放item-->
           <div id="fileList" class="uploader-list">
             <template v-if="fileObj.length > 0">
-              <div :id="i" class="item" v-for="file, i in fileObj">
+              <div :id="i" class="item" v-for="(file, i) in fileObj" :key="i">
                 <h4 class="info">
                   {{file.name}}
                   <span style="padding-left:10px">
